@@ -1,9 +1,8 @@
 hello_array = "hello".chars
 p hello_array
-jello_array = "jelloer".chars
 response_array = []
 hello_array.each do |letter|
-  if jello_array.include? letter
+  if "jelloer".include? letter
     response = "yes"
   else 
     response = "no"
