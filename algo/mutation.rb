@@ -11,10 +11,10 @@ def mutation?(base_word, mutation)
   puts "mutation:"
   p mutation_array 
   mutation_array.each do |letter|
-    if base_word_array.include? letter == false
-      response = "no"
-    else
+    if base_word_array.include? letter
       response = "yes"
+    else
+      response = "no"
     end
     response_array << response
   end

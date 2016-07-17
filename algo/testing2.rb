@@ -2,7 +2,7 @@ hello_array = "hello".chars
 p hello_array
 response_array = []
 hello_array.each do |letter|
-  if "jelloer".include? letter
+  if "jelloer".include? letter == true
     response = "yes"
   else 
     response = "no"
