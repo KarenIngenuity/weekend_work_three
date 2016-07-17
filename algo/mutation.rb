@@ -3,25 +3,15 @@
 # the first string, and false otherwise.
 
 def mutation?(base_word, mutation)
-  base_word_array = base_word.chars
   mutation_array = mutation.chars
   response_array = []
-  puts "base word:"
-  p base_word_array
-  puts "mutation:"
-  p mutation_array 
   mutation_array.each do |letter|
-    if base_word_array.include? letter
-      response = "yes"
-    else
-      response = "no"
-    end
-    response_array << response
+    response = base_word.include? letter
+    response_array << response.to_s
   end
-  p response_array
-  if response_array.include? "no"
+  if response_array.include? "false"
     return false
-  else
+  else 
     return true
   end
 end
