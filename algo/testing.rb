@@ -1,68 +1,51 @@
-class HotelReservation
-  attr_accessor :customer_name, :date, :room_number, :amenities
+# In this exercise, you will be creating two classes AND the driver code to test them.
+# You will create a Tv class and a Remote class. 
 
-  def initialize(reservation_info)
-    @customer_name = reservation_info[:customer_name]
-    @date = reservation_info[:date]
-    @room_number = reservation_info[:room_number]
-    @amenities = []
-  end
+# The Tv class will have the attributes: power, volume, and channel. 
 
-  def add_a_fridge
-    @amenities << "fridge"
-  end
+# The Remote class will have just one attribute: tv. This will represent which tv it
+# actually controls.
+# The Remote will have the following instance methods: 
+# toggle_power (this will turn off the tv if it's on, or turn it on if it's off)
+# increment_volume (this will increase the tv's volume by 1)
+# decrement_volume (this will decrease the tv's volume by 1)
+# set_channel (this will change the tv's channel to whatever integer is passed to this method)
 
-  def add_a_crib
-    @amenities << "crib"
-  end
+class TV
+  attr_accessor :power, :volume, :channel
 
-  def add_a_custom_amenity(amenity)
-    @amenities << amenity
+  def initialize(tv_attributes)
+    @power = tv_attributes[:power] #true/false
+    @volume = tv_attributes[:volume] #integer
+    @channel = tv_attributes[:channel] #integer
   end
 end
 
-puts 'Testing code'
-puts
+class Remote
+  attr_accessor :tv
 
-reservation = HotelReservation.new(customer_name: "John", date: "16-07-18", room_number: "300")
-p reservation
+  def initialize(tv)
+    @tv = tv
+  end
 
-reservation.room_number= "400"
-result = reservation.room_number
-puts result
-if result == "400"
-  puts "PASS"
-else 
-  puts "Please inspect the writer method for room number."
+  def toggle_power
+    @power = !@power
+    if @power == true
+      return 'on'
+    else
+      return 'off'
+    end    
+  end
+
+  def increment_volume
+    @volume += 1
+  end
+
+  def decrement_volume
+    @volume -= 1
+  end
+
+  def set_channel(channel) #integer
+    @channel = channel
+  end
 end
-
-reservation.add_a_fridge
-result = reservation.amenities
-p reservation.amenities
-if result.include? "fridge"
-  puts "PASS"
-else
-  puts "Please inspect the add_a_fridge method."
-end
-
-reservation.amenities = []
-
-reservation.add_a_crib
-result = reservation.amenities
-p reservation.amenities
-if result.include? "crib"
-  puts "PASS"
-else
-  puts "Please inspect the add_a_crib method."
-end  
-
-reservation.amenities = []
-
-reservation.add_a_custom_amenity("microwave")
-result = reservation.amenities
-p reservation.amenities
-if result.include? "microwave"
-  puts "PASS"
-else
-  puts "Please inspect the add_a_custom_amenity method."
-end  
