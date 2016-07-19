@@ -36,20 +36,20 @@ class Remote
     @tv = tv
   end
 
-  def toggle_power
-    @power = !@power  
+  def toggle_power(tv)
+    tv.power = !power  
   end
 
-  def increment_volume
-    @volume += 1
+  def increment_volume(tv)
+    tv.volume += 1
   end
 
-  def decrement_volume
-    @volume -= 1
+  def decrement_volume(tv)
+    tv.volume -= 1
   end
 
-  def set_channel(channel) #integer
-    @channel = channel
+  def set_channel(tv,channel) #integer
+    tv.channel = channel
   end
 end
 
@@ -96,7 +96,7 @@ else
 end
 puts
 
-remote.toggle_power
+remote.toggle_power("tv")
 result = tv.power
 puts result
 if result == false
@@ -110,6 +110,8 @@ puts tv.volume
 remote.increment_volume
 puts tv.volume
 
+puts remote.tv
+p remote.tv
 
 
 
