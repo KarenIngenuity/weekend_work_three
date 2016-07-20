@@ -20,13 +20,6 @@ class TV
     @channel = tv_attributes[:channel] #integer
   end
 
-  def power_status
-    if @power == true
-      return 'on'
-    else
-      return 'off'
-    end
-  end
 end
 
 class Remote
@@ -36,32 +29,38 @@ class Remote
     @tv = tv
   end
 
-  def toggle_power(tv)
-    tv.power = !power  
+  def toggle_power
+    if @tv.power == true
+      @tv.power = false
+    else 
+      @tv.power = true
+    end
   end
 
-  def increment_volume(tv)
-    tv.volume += 1
+  def increment_volume
+    @tv.volume += 1
   end
 
-  def decrement_volume(tv)
-    tv.volume -= 1
+  def decrement_volume
+    @tv.volume -= 1
   end
 
-  def set_channel(tv,channel) #integer
-    tv.channel = channel
+  def set_channel(channel) #integer
+    @tv.channel = channel
   end
 end
 
 puts "Testing code"
 puts
 
+
 tv = TV.new(power: true, volume: 5, channel: 20)
 p tv
+puts tv.power
 puts
-result = tv.power_status
+result = tv.power
 puts result
-if result == "on"
+if result == true
   puts "PASS"
 else
   puts "Please inspect the power attribute"
@@ -84,19 +83,20 @@ else
 end  
 puts
 
-remote = Remote.new("tv")
+remote = Remote.new(tv)
 p remote
 puts
 result = remote.tv
 puts result
-if result == "tv"
+if result == tv
   puts "PASS"
 else 
   puts "Please inspect the tv attribute"
 end
 puts
 
-remote.toggle_power("tv")
+puts tv.power
+remote.toggle_power
 result = tv.power
 puts result
 if result == false
@@ -109,9 +109,5 @@ puts
 puts tv.volume
 remote.increment_volume
 puts tv.volume
-
-puts remote.tv
-p remote.tv
-
 
 
